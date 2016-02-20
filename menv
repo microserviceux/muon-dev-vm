@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo Installing Dev Tooling
+sudo apt-get update; sudo apt-get install -y git
+curl -s -L https://github.com/docker/compose/releases/download/1.6.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose >/dev/null && sudo chmod 755 /usr/local/bin/docker-compose
+
+echo Downloading Environments
+git clone https://github.com/microserviceux/microserviceux-environments.git
+
+echo Starting Base Environment
+cd microserviceux-environments/start
+docker-compose up -d
+touch running
+
+echo Dev Environment Ready

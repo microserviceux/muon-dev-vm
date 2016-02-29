@@ -18,7 +18,9 @@ function init {
     echo Starting Base Environment
     cd microserviceux-environments/start
     docker-compose up -d
-    touch running
+
+    cd ../microserviceux-environments/molecule
+    docker-compose up -d
 
     echo Dev Environment Ready
     exit

@@ -9,8 +9,8 @@ Vagrant.configure(2) do |config|
   # Molecule
   config.vm.network "forwarded_port", guest: 7274, host: 7274
    
-  config.vm.provision "file", source: "menv", destination: "menv"
+  config.vm.provision "file", source: "menv", destination: "./bin/menv"
    config.vm.provision "shell", inline: <<-SHELL
-     ./menv
+     ./bin/menv init
    SHELL
 end

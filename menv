@@ -1,15 +1,47 @@
 #!/bin/bash
 
-echo Installing Dev Tooling
-sudo apt-get update; sudo apt-get install -y git
-curl -s -L https://github.com/docker/compose/releases/download/1.6.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose >/dev/null && sudo chmod 755 /usr/local/bin/docker-compose
+function init {
+    echo Installing Dev Tooling
 
-echo Downloading Environments
-git clone https://github.com/microserviceux/microserviceux-environments.git
+    cat "export PATH=\$PATH:/home/vagrant/bin" >> /home/vagrant/.bash_profile
+    cat "echo Welcome to the Muon Dev Support VM. Try 'menv' to get started" >> /home/vagrant/.bash_profile
 
-echo Starting Base Environment
-cd microserviceux-environments/start
-docker-compose up -d
-touch running
+    sudo apt-get update; sudo apt-get install -y git
+    curl -s -L https://github.com/docker/compose/releases/download/1.6.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose >/dev/null && sudo chmod 755 /usr/local/bin/docker-compose
 
-echo Dev Environment Ready
+    echo Downloading Environments
+    cd /home/vagrant
+    git clone https://github.com/microserviceux/microserviceux-environments.git
+
+    sudo chown -R vagrant .
+
+    echo Starting Base Environment
+    cd microserviceux-environments/start
+    docker-compose up -d
+    touch running
+
+    echo Dev Environment Ready
+    exit
+}
+
+function exec {
+    curl -L -q http://localhost:8080/menv?cmd=$1\&arg=$2
+    echo ""
+    exit
+}
+
+case $1 in
+    init)
+    init
+    shift # past argument
+    ;;
+    *)
+    exec $@
+    shift # past argument
+    ;;
+    *)
+
+    ;;
+esac
+
+

@@ -3,8 +3,8 @@
 function init {
     echo Installing Dev Tooling
 
-    cat "export PATH=\$PATH:/home/vagrant/bin" >> /home/vagrant/.bash_profile
-    cat "echo Welcome to the Muon Dev Support VM. Try 'menv' to get started" >> /home/vagrant/.bash_profile
+    echo "export PATH=\$PATH:/home/vagrant/bin" >> /home/vagrant/.bash_profile
+    echo "echo Welcome to the Muon Dev Support VM. Try 'menv' to get started" >> /home/vagrant/.bash_profile
 
     sudo apt-get update; sudo apt-get install -y git
     curl -s -L https://github.com/docker/compose/releases/download/1.6.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose >/dev/null && sudo chmod 755 /usr/local/bin/docker-compose
@@ -16,11 +16,8 @@ function init {
     sudo chown -R vagrant .
 
     echo Starting Base Environment
-    cd microserviceux-environments/start
-    docker-compose up -d
-
-    cd ../microserviceux-environments/molecule
-    docker-compose up -d
+    (cd microserviceux-environments/start && docker-compose up -d)
+    (cd microserviceux-environments/molecule && docker-compose up -d)
 
     echo Dev Environment Ready
     exit

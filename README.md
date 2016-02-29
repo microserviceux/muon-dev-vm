@@ -6,7 +6,6 @@ It provides a set of services out of the box that give developer support and pro
 
 * Photon
 * Molecule
-* MuonJS Gateway
 
 Integrated into Molecule is a Docker compose based environment switcher. This gives appstore style access to a variety of different environments, addons and community provided services. These can be downloaded with a click and then managed from within Molecule
 
@@ -32,4 +31,8 @@ Dev Environment Ready
 
 You can now begin to develop using the environment.
 
-Try visiting the Molecule UI, which will be available on your local machine on port 7274 - http://localhost:7274
+Try to ssh into the VM to use the 'menv' command line tool.
+
+```vagrant ssh```
+
+```menv list```

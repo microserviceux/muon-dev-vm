@@ -6,6 +6,8 @@ Vagrant.configure(2) do |config|
 
   # RabbitMQ
   config.vm.network "forwarded_port", guest: 5672, host: 5672
+  config.vm.network "forwarded_port", guest: 15672, host: 15672
+  
   # Molecule
   config.vm.network "forwarded_port", guest: 7274, host: 7274
    

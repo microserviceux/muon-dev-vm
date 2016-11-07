@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "box-cutter/ubuntu1404-docker"
+  config.vm.box = "ubuntu/xenial64"
 
   # RabbitMQ
   config.vm.network "forwarded_port", guest: 5672, host: 5672
@@ -10,8 +10,11 @@ Vagrant.configure(2) do |config|
   
   # Molecule
   config.vm.network "forwarded_port", guest: 7274, host: 7274
+
+  config.vm.provision "shell", inline: "sudo apt-get -y install docker-compose"
    
   config.vm.provision "file", source: "menv", destination: "./bin/menv"
+
    config.vm.provision "shell", inline: <<-SHELL
      ./bin/menv init
    SHELL

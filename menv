@@ -11,13 +11,13 @@ function init {
 
     echo Downloading Environments
     cd /home/ubuntu
-    git clone https://github.com/microserviceux/microserviceux-environments.git
+    git clone https://github.com/muoncore/muon-starter.git
 
     sudo chown -R vagrant .
 
     echo Starting Base Environment
-    (cd microserviceux-environments/start && sudo docker-compose up -d)
-    (cd microserviceux-environments/molecule && sudo docker-compose up -d)
+    (cd muon-starter/base && sudo docker-compose up -d)
+    #(cd muon-starter/molecule && sudo docker-compose up -d)
 
     echo Dev Environment Ready
     exit

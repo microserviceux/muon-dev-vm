@@ -6,20 +6,31 @@ function init {
     echo "export PATH=\$PATH:/home/vagrant/bin" >> /home/vagrant/.bash_profile
     echo "echo Welcome to the Muon Dev Support VM. Try 'menv' to get started" >> /home/vagrant/.bash_profile
 
-    sudo apt-get update; sudo apt-get install -y git
-    #curl -s -L https://github.com/docker/compose/releases/download/1.6.0/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose >/dev/null && sudo chmod 755 /usr/local/bin/docker-compose
+    sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
+    echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
 
-    echo Downloading Environments
+    sudo apt-get update
+    sudo apt-get install -y git make
+    sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual docker-engine
+
+    sudo service docker start
+
+    curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose >/dev/null;  sudo chmod 755 /usr/local/bin/docker-compose
+
+    sudo groupadd docker
+    sudo usermod -aG docker ubuntu
+    
+    echo Downloading Base Environment
     cd /home/ubuntu
     git clone https://github.com/muoncore/muon-starter.git
 
-    sudo chown -R vagrant .
+    #sudo chown -R vagrant .
 
     echo Starting Base Environment
-    (cd muon-starter/base && sudo docker-compose up -d)
-    #(cd muon-starter/molecule && sudo docker-compose up -d)
+    (cd muon-starter && make)
 
-    echo Dev Environment Ready
+    echo Muon Dev Environment Ready. 
+    echo Visit http://localhost:12345 FIX THIS 
     exit
 }
 

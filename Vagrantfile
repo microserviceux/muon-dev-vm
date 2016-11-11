@@ -9,14 +9,12 @@ Vagrant.configure(2) do |config|
   config.vm.network "forwarded_port", guest: 15672, host: 15672
   
   # Molecule
+  config.vm.network "forwarded_port", guest: 3420, host: 3420
+  # Menv endpoint
   config.vm.network "forwarded_port", guest: 7274, host: 7274
-
 
   config.vm.network "forwarded_port", guest: 3000, host: 3000 
 
-
-  config.vm.provision "shell", inline: "sudo apt-get -y install docker-compose"
-   
   config.vm.provision "file", source: "menv", destination: "./bin/menv"
 
    config.vm.provision "shell", inline: <<-SHELL

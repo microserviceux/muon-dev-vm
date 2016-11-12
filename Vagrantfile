@@ -4,6 +4,10 @@
 Vagrant.configure(2) do |config|
   config.vm.box = "ubuntu/xenial64"
 
+  config.vm.provider "virtualbox" do |v|
+    v.name = "muon-dev-vm"
+  end
+  
   # RabbitMQ
   config.vm.network "forwarded_port", guest: 5672, host: 5672
   config.vm.network "forwarded_port", guest: 15672, host: 15672

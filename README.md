@@ -20,7 +20,7 @@ These take no time to build, but do require downloading a larger base box. You w
 On your dev machine, outside of this repository.
 
 ```
-vagrant box add "https://s3-eu-west-1.amazonaws.com/muon-dev-vm/muon-dev-vm.box"
+vagrant box add --name muon-dev-vm "https://s3-eu-west-1.amazonaws.com/muon-dev-vm/muon-dev-vm.box"
 ```
 
 Then, when you want a new muon dev environment

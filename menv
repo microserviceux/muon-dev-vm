@@ -9,12 +9,16 @@ function init {
     sudo apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D
     echo "deb https://apt.dockerproject.org/repo ubuntu-xenial main" | sudo tee /etc/apt/sources.list.d/docker.list
 
+    curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+    
     sudo apt-get update
-    sudo apt-get install -y git make
+    sudo apt-get install -y git make nodejs
     sudo apt-get install -y linux-image-extra-$(uname -r) linux-image-extra-virtual docker-engine
 
+    sudo npm install -g muon-cli
+    
     sudo service docker start
-
+    
     curl -L https://github.com/docker/compose/releases/download/1.8.1/docker-compose-`uname -s`-`uname -m` | sudo tee /usr/local/bin/docker-compose >/dev/null;  sudo chmod 755 /usr/local/bin/docker-compose
 
     sudo groupadd docker

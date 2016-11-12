@@ -1,13 +1,13 @@
 # Muon Developer VM Environment
 
-This vagrant based VM provides a rich developer support environment while developing Muon ecosystem based services.
+This vagrant based VM provides a developer support environment while developing Muon ecosystem based services.
 
 It provides a set of services out of the box that give developer support and provide a basis for rapid development.
 
 * Photon
 * Molecule
 
-Integrated into Molecule is a Docker compose based environment switcher. This gives appstore style access to a variety of different environments, addons and community provided services. These can be downloaded with a click and then managed from within Molecule
+This is a VM wrapper around the support environment at https://github.com/muoncore/muon-starter
 
 ## Getting Started
 
@@ -36,3 +36,8 @@ Try to ssh into the VM to use the 'menv' command line tool.
 ```vagrant ssh```
 
 ```menv list```
+
+If you ssh into the VM, the muon cli is installed.
+
+```muon discover```
+

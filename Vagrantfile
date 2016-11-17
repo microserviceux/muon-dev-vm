@@ -7,6 +7,8 @@ Vagrant.configure(2) do |config|
   config.vm.provider "virtualbox" do |v|
     v.name = "muon-dev-vm"
   end
+
+  config.vm.synced_folder '.', '/vagrant', disabled: true
   
   # RabbitMQ
   config.vm.network "forwarded_port", guest: 5672, host: 5672

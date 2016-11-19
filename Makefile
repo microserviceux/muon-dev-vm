@@ -8,3 +8,5 @@ package: build
 	
 publish: build
 	echo "Publish to S3 is currently manual"
+        ./bin/transfer.sh
+	

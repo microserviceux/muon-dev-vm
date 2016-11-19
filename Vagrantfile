@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure(2) do |config|
-  config.vm.box = "ubuntu/xenial64"
+  config.vm.box = "ubuntu/yakkety64"
 
   config.vm.provider "virtualbox" do |v|
     v.name = "muon-dev-vm"

@@ -24,8 +24,8 @@ fi
 
 stringToSign="PUT\n\n${contentType}\n${dateValue}\n$acl\n${resource}"
 
-s3Key=AKIAISJ3LLCVCZCVIKDA
-s3Secret=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
+s3Key=
+s3Secret=
 signature=`echo -en ${stringToSign} | openssl sha1 -hmac ${s3Secret} -binary | base64 `
 
 # show curl output for santiy's sake
